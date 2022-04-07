@@ -20,11 +20,11 @@ function Column(props: ColumnProps) {
     <div className={styles.container}>
       <h3 className={styles.title}>{props.column.title}</h3>
       <Droppable droppableId={props.column.id}>
-        {provided => (
+        {(provided, snapshot) => (
           <div
-            ref={provided.innerRef}
             {...provided.droppableProps}
-            className={styles.taskList}
+            ref={provided.innerRef}
+            className={`${styles.taskList}${snapshot.draggingOverWith ? " " + styles.taskHovering : ""}`}
           >
             {props.tasks.map((task, index) => <Task key={task.id} task={task} index={index} />)}
             {provided.placeholder}

@@ -15,12 +15,12 @@ function Task(props: TaskProps) {
       draggableId={props.task.id}
       index={props.index}
     >
-      {provided => (
+      {(provided, snapshot) => (
         <div
-          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={styles.container}
+          ref={provided.innerRef}
+          className={`${styles.container}${snapshot.isDragging ? " " + styles.draggingTask : ""}`}
         >
           {props.task.content}
         </div>

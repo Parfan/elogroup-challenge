@@ -5,3 +5,8 @@
   margin-bottom: 8px;
   background-color: white;
 }
+
+.draggingTask {
+  user-select: none;
+  background-color: lightgreen;
+}
