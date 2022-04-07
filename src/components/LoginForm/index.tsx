@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import Button from "../Button";
 
 function LoginForm() {
   const [user, setUser] = useState<string>("");
@@ -10,29 +11,27 @@ function LoginForm() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Usuário</span>
-          <input
-            type="text"
-            value={user}
-            onChange={e => setUser(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>Senha</span>
-          <input
-            type="text"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Entrar</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        <span>Usuário</span>
+        <input
+          type="text"
+          value={user}
+          onChange={e => setUser(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        <span>Senha</span>
+        <input
+          type="text"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <Button type="submit" color="black">a</Button>
+    </form>
   )
 }
 
