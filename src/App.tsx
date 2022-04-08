@@ -35,28 +35,59 @@ function App() {
     if (destination.droppableId === source.droppableId &&
       destination.index === source.index)
       return
-    
-    // Persisting the changes
-    const column = data.columns[source.droppableId];
-    const newTaskIds = [...column.taskIds];
-    newTaskIds.splice(source.index, 1);
-    newTaskIds.splice(destination.index, 0, draggableId);
 
-    const newColumn = {...column, taskIds: newTaskIds};
-    setData({...data, columns: {...data.columns, [newColumn.id]: newColumn}});
+    // Persisting the changes
+    const start = data.columns[source.droppableId];
+    const finish = data.columns[destination.droppableId];
+
+    // Moving in the same list
+    if (start === finish) {
+      const newTaskIds = [...start.taskIds];
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
+
+      const newColumn = { ...start, taskIds: newTaskIds };
+      setData({ ...data, columns: { ...data.columns, [newColumn.id]: newColumn } });
+
+      return;
+    }
+
+    // Moving from one list to another
+    const startTaskIds = [...start.taskIds];
+    startTaskIds.splice(source.index, 1);
+    const newStart = { ...start, taskIds: startTaskIds };
+
+    const finishTaskIds = [...finish.taskIds];
+    finishTaskIds.splice(destination.index, 0, draggableId);
+    const newFinish = { ...finish, taskIds: finishTaskIds };
+
+    setData({
+      ...data, columns: {
+        ...data.columns,
+        [newStart.id]: newStart,
+        [newFinish.id]: newFinish
+      }
+    });
   }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <>
       <LoginForm />
       <RegisterForm />
-      {data.columnOrder.map(columnId => {
-        const column = data.columns[columnId];
-        const tasks = column.taskIds.map(taskId => data.tasks[taskId]);
 
-        return <Column key={column.id} column={column} tasks={tasks} />;
-      })}
-    </DragDropContext>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div style={{
+          display: "flex"
+        }}>
+          {data.columnOrder.map(columnId => {
+            const column = data.columns[columnId];
+            const tasks = column.taskIds.map(taskId => data.tasks[taskId]);
+
+            return <Column key={column.id} column={column} tasks={tasks} />;
+          })}
+        </div>
+      </DragDropContext>
+    </>
   );
 }
 
