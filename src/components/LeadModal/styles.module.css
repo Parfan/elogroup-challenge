@@ -1,0 +1,48 @@
+.container {
+  background-color: #0009;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 10px;
+  min-width: 400px;
+  min-height: 80%;
+  display: flex;
+  position: relative;
+}
+
+.modal svg {
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.form {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  padding: 5px;
+  margin-top: 5px;
+}
