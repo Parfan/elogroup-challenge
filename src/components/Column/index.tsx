@@ -8,18 +8,23 @@ interface ColumnProps {
     id: string,
     title: string,
     taskIds: string[]
-  };
+  },
   tasks: {
     id: string,
     content: string
-  }[];
+  }[],
+  isDropDisabled?: boolean
 }
 
 function Column(props: ColumnProps) {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>{props.column.title}</h3>
-      <Droppable droppableId={props.column.id}>
+      <Droppable
+        droppableId={props.column.id}
+        isDropDisabled={props.isDropDisabled}
+        // type={props.column.id === "column-3" ? "done" : "active"}
+      >
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
