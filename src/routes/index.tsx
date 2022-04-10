@@ -14,7 +14,7 @@ function PageRoutes() {
       <Route path="/" element={<Home />}>
         <Route index element={<LoginForm />} />
         <Route path="login" element={<LoginForm />} />
-        <Route path="register" element={<SignUpForm />} />
+        <Route path="signup" element={<SignUpForm />} />
       </Route>
       <Route path="leads" element={<Leads />}>
         <Route path="create" element={<LeadModal />} />
@@ -24,4 +24,4 @@ function PageRoutes() {
   )
 }
 
-export default PageRoutes
+export default PageRoutes;
