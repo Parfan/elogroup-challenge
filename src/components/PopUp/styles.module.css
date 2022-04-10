@@ -1,0 +1,32 @@
+.container {
+  background-color: tomato;
+  color: white;
+  text-align: center;
+  width: 50%;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: -200px;
+  left: 25%;
+  animation: popup 4s;
+}
+
+@keyframes popup {
+  0% {
+    transform: translateY(-200px);
+  }
+
+  15% {
+    transform: translateY(220px);
+  }
+
+  85% {
+    transform: translateY(220px);
+  }
+
+  100% {
+    transform: translateY(-200px);
+  }
+}

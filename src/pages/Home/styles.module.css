@@ -1,0 +1,19 @@
+.background {
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 599px) {
+  .logoContainer {
+    background-color: var(--black);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+  }
+}

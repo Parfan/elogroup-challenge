@@ -1,0 +1,95 @@
+.container {
+  background-color: var(--white);
+  padding: 50px 20px;
+  width: 40%;
+  min-width: 300px;
+  max-width: 375px;
+  min-height: 50vh;
+  display: flex;
+}
+
+.form {
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.form a {
+  color: var(--blue);
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form label:last-of-type {
+  margin-bottom: 5px;
+}
+
+.form input {
+  border: 2px solid var(--black);
+  font-size: 1.1rem;
+  outline: none;
+  padding: 5px;
+}
+
+.form input:focus {
+  border: 2px solid var(--blue);
+}
+
+.form input::placeholder {
+  font-size: 0.9rem;
+}
+
+.form button {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  min-width: 50%;
+  padding: 20px 50px;
+  margin-top: 5px;
+}
+
+.form button:hover {
+  opacity: 0.9;
+}
+
+.login {
+  font-size: 1rem;
+}
+
+.error {
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 0.85rem;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  animation: errorAnimation 0.5s;
+}
+
+@keyframes errorAnimation {
+  0% {
+    background-color: var(--white);
+  }
+
+  100% {
+    background-color: var(--blue);
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .container {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+  }  
+}
