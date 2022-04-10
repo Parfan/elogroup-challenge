@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  border: 1px solid var(--black);
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox:checked {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(330deg) brightness(104%) contrast(200%);
+}

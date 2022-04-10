@@ -1,7 +1,7 @@
 .container {
   background-color: #0009;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: grid;
   place-items: center;
   position: fixed;
@@ -12,37 +12,86 @@
 .modal {
   background-color: #fff;
   padding: 10px;
+  width: 40%;
   min-width: 400px;
+  max-width: 475px;
   min-height: 80%;
+  padding: 50px 20px;
   display: flex;
   position: relative;
 }
 
 .modal svg {
-  padding: 3px;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 8px;
-  right: 8px;
   cursor: pointer;
+  padding: 3px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .form {
-  flex-grow: 1;
+  font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.form .textField {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.form label {
-  display: flex;
-  flex-direction: column;
+.form .textField input {
+  border: 2px solid var(--black);
+  font-size: 1.1rem;
+  outline: none;
+  padding: 5px;
 }
 
-.form input {
-  padding: 5px;
-  margin-top: 5px;
+.form .textField input:focus {
+  border: 2px solid var(--blue);
+}
+
+.form button {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  min-width: 50%;
+  padding: 20px 50px;
+  margin-top: 10px;
+}
+
+.form button:hover {
+  opacity: 0.9;
+}
+
+.checkboxField {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error {
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 0.85rem;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+}
+
+@media screen and (max-width: 599px) {
+  .modal {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+  }  
 }
