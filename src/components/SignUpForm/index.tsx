@@ -1,5 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import PopUp from "../PopUp";
 import styles from "./styles.module.css";
 
@@ -10,6 +11,7 @@ function SignUpForm() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [signupSuccess, setSignupSuccess] = useState(false);
+  const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
   function validatePassword() {
@@ -33,6 +35,16 @@ function SignUpForm() {
     const isPasswordValidated = validatePassword();
     const isPasswordMatch = confirmPasswordMatch();
 
+    const users = userContext.users;
+    // Test if user already exists
+    for (let u in users) {
+      if (users[u].user === user) {
+        setErrorMessage("Este usuário já existe, tente outro.");
+        setShowErrorMessage(true);
+        return;
+      }
+    }
+    // Check if password has all the requirements
     if (!isPasswordValidated) {
       setErrorMessage(`
         Sua senha deve conter ao menos 8 caracteres, contendo ao menos,
@@ -41,24 +53,34 @@ function SignUpForm() {
         um caracter maiúsculo.
       `)
       setShowErrorMessage(true);
-    } else if (!isPasswordMatch) {
+      return;
+    }
+    // Check if user confirmed the password correctly
+    if (!isPasswordMatch) {
       setErrorMessage("As senhas que você digitou não são compatíveis.")
       setShowErrorMessage(true);
-    } else {
-      setShowErrorMessage(false);
-      setSignupSuccess(true);
-      setTimeout(() => navigate("/"), 3000);
+      return;
     }
+    setShowErrorMessage(false);
 
-    // const users = JSON.parse(localStorage.getItem("users") || "[]");
-    // localStorage.setItem("users", JSON.stringify([...users, {
-    //   id: Math.random().toString(16).slice(2),
-    //   username: user,
-    //   password: password,
-    //   leads: {}
-    // }]));
+    // Completes the user sign-up
+    setSignupSuccess(true);
 
-    // navigate("/leads");
+    // Adds new user to localStorage
+    const newUserId = Math.random().toString(16).slice(2);
+    const newUsers = {
+      ...userContext.users,
+      [newUserId]: {
+        leads_id: newUserId,
+        user: user,
+        password: password
+      }
+    }
+    userContext.setUsers(newUsers);
+    localStorage.setItem("users", JSON.stringify(newUsers));
+
+    // Redirects to the login page
+    setTimeout(() => navigate("/"), 3000);
   }
 
   return (
@@ -71,7 +93,7 @@ function SignUpForm() {
       ) : false}
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.form}>
-        <h1>Cadastro</h1>
+          <h1>Cadastro</h1>
           <label>
             <span>Usuário <span style={{ color: "red" }}>*</span></span>
             <input

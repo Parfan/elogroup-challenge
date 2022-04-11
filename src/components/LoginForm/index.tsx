@@ -1,5 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import styles from "./styles.module.css";
 
 function LoginForm() {
@@ -7,14 +8,37 @@ function LoginForm() {
   const [password, setPassword] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    // const users = JSON.parse(localStorage.getItem("users") || "[]");
-    localStorage.setItem("isSessionActive", JSON.stringify(true));
-    navigate("/leads");
+    const users = userContext.users;
+    // Test if user exists
+    let userId = "";
+    for (let u in users) {
+      if (users[u].user === user) {
+        userId = u;
+        break;
+      }
+    }
+    if (userId === "") {
+      setErrorMessage("Este usuário não existe.");
+      setShowErrorMessage(true);
+      return;
+    }
+    // Check if password is correct
+    if (users[userId].password !== password) {
+      setErrorMessage("A senha inserida está incorreta.");
+      setShowErrorMessage(true);
+      return;
+    }
+    setShowErrorMessage(false);
+
+    // Completes the user log-in
+    localStorage.setItem("sessionActive", "true");
+    setTimeout(() => navigate("/leads"), 1000);
   }
 
   return (

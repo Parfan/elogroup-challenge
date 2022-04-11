@@ -6,7 +6,7 @@ function Header() {
   const navigate = useNavigate();
 
   function handleClick() {
-    localStorage.setItem("isSessionActive", JSON.stringify(false));
+    localStorage.setItem("sessionActive", "false");
     navigate("/");
   }
 

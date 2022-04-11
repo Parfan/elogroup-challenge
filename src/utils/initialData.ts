@@ -1,4 +1,4 @@
-interface initialDataInterface {
+interface LeadsInterface {
   leads: {
     [lead: string]: {
       id: string,
@@ -20,7 +20,7 @@ interface initialDataInterface {
   columnOrder: string[];
 }
 
-const initialData: initialDataInterface = {
+const leads: LeadsInterface = {
   leads: {
     'lead-1': {
       id: 'lead-1', content: {
@@ -59,4 +59,4 @@ const initialData: initialDataInterface = {
   columnOrder: ['column-1', 'column-2', 'column-3']
 };
 
-export default initialData;
+export default leads;

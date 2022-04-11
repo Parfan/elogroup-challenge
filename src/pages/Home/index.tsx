@@ -7,8 +7,8 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isSessionActive = JSON.parse(localStorage.getItem("isSessionActive") || "false");
-    if (isSessionActive)
+    const sessionActive = JSON.parse(localStorage.getItem("sessionActive") || "false");
+    if (sessionActive)
       navigate("/leads");
   }, [navigate]);
 

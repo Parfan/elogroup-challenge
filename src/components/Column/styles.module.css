@@ -26,5 +26,5 @@
 }
 
 .leadHovering {
-  background-color: skyblue;
+  background-color: var(--light);
 }

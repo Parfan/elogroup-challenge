@@ -1,7 +1,5 @@
 .lead {
   background-color: var(--blue);
-  border: 1px solid var(--light);
-  border-radius: 2px;
   color: var(--white);
   font-size: 1.25rem;
   padding: 10px;
@@ -13,9 +11,10 @@
 }
 
 .draggingLead {
-  background-color: lightgreen;
+  background-color: var(--blue);
+  filter: brightness(0.9);
 }
 
 .dragDisabled {
-  background-color: lightgrey;
+  opacity: 0.4;
 }
