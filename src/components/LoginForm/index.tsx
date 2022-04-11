@@ -50,7 +50,7 @@ function LoginForm() {
           <input
             type="text"
             value={user}
-            onChange={e => setUser(e.target.value)}
+            onChange={e => setUser(e.target.value.trim())}
             placeholder="Digite seu usuário"
             required
           />
@@ -60,7 +60,7 @@ function LoginForm() {
           <input
             type="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value.trim())}
             placeholder="Digite sua senha"
             required
           />

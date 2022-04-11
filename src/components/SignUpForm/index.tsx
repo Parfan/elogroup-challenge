@@ -99,7 +99,7 @@ function SignUpForm() {
             <input
               type="text"
               value={user}
-              onChange={e => setUser(e.target.value)}
+              onChange={e => setUser(e.target.value.trim())}
               placeholder="Digite o usuário"
               required
             />
@@ -109,7 +109,7 @@ function SignUpForm() {
             <input
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value.trim())}
               placeholder="Digite uma senha"
               required
             />
@@ -119,7 +119,7 @@ function SignUpForm() {
             <input
               type="password"
               value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
+              onChange={e => setConfirmPassword(e.target.value.trim())}
               placeholder="Repita a senha"
               required
             />
