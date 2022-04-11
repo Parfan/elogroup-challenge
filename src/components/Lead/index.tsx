@@ -1,20 +1,25 @@
 import { Draggable } from "react-beautiful-dnd";
 import styles from "./styles.module.css";
 
-interface TaskProps {
-  task: {
+interface LeadProps {
+  lead: {
     id: string,
-    content: string,
+    content: {
+      name: string,
+      telephone: string,
+      email: string,
+      oportunities: string[]
+    },
   },
   index: number
 }
 
-function Task(props: TaskProps) {
-  const isDragDisabled = props.task.id === "task-1";
+function Lead(props: LeadProps) {
+  const isDragDisabled = props.lead.id === "lead-1";
 
   return (
     <Draggable
-      draggableId={props.task.id}
+      draggableId={props.lead.id}
       index={props.index}
       isDragDisabled={isDragDisabled}
     >
@@ -24,16 +29,16 @@ function Task(props: TaskProps) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className={
-            styles.container +
+            styles.lead +
             (isDragDisabled ? " " + styles.dragDisabled :
-              snapshot.isDragging ? " " + styles.draggingTask : "")
+              snapshot.isDragging ? " " + styles.draggingLead : "")
           }
         >
-          {props.task.content}
+          {props.lead.content.name}
         </div>
       )}
     </Draggable>
   )
 }
 
-export default Task;
+export default Lead;

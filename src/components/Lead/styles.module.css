@@ -1,0 +1,21 @@
+.lead {
+  background-color: var(--blue);
+  border: 1px solid var(--light);
+  border-radius: 2px;
+  color: var(--white);
+  font-size: 1.25rem;
+  padding: 10px;
+  margin-bottom: 8px;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.draggingLead {
+  background-color: lightgreen;
+}
+
+.dragDisabled {
+  background-color: lightgrey;
+}

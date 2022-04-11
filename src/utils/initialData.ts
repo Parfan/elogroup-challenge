@@ -1,42 +1,58 @@
 interface initialDataInterface {
-  tasks: {
-    [task: string]: {
+  leads: {
+    [lead: string]: {
       id: string,
-      content: string
+      content: {
+        name: string,
+        telephone: string,
+        email: string,
+        oportunities: string[]
+      }
     }
   };
   columns: {
     [column: string]: {
       id: string,
       title: string,
-      taskIds: string[]
+      leadIds: string[]
     }
   };
-  columnOrder: string[]
+  columnOrder: string[];
 }
 
 const initialData: initialDataInterface = {
-  tasks: {
-    'task-1': { id: 'task-1', content: 'Take out the garbage' },
-    'task-2': { id: 'task-2', content: 'Watch my favorite show' },
-    'task-3': { id: 'task-3', content: 'Charge my phone' },
-    'task-4': { id: 'task-4', content: 'Cook dinner' },
+  leads: {
+    'lead-1': {
+      id: 'lead-1', content: {
+        name: "Org. Internacionais", telephone: "0123456789", email: "lead@email.com", oportunities: []
+      }
+    },
+    'lead-2': {
+      id: 'lead-2', content: {
+        name: "Ind. Farm. LTDA", telephone: "0123456789", email: "lead@email.com", oportunities: []
+      }
+    },
+    'lead-3': {
+      id: 'lead-3', content: {
+        name: "Musc. Sound Live Cmp", telephone: "0123456789", email: "lead@email.com", oportunities: []
+      }
+    }
   },
   columns: {
     'column-1': {
       id: 'column-1',
-      title: 'To do',
-      taskIds: ['task-1', 'task-2', 'task-3', 'task-4'],
+      title: 'Cliente em Potencial',
+      leadIds: ['lead-1', 'lead-2', 'lead-3'],
     },
     'column-2': {
       id: 'column-2',
-      title: 'In progress',
-      taskIds: [],
+      title: 'Dados Confirmados',
+      leadIds: [],
     },
     'column-3': {
       id: 'column-3',
-      title: 'Done',
-      taskIds: [],
+      title: 'Reunião Agendada',
+      leadIds: [],
     }
   },
   // Facilitate reordering of the columns

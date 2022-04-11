@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import initialData from "../../utils/initialData";
 import Column from "../Column";
+import styles from "./styles.module.css";
 
 interface startInterface {
   type: string,
@@ -51,24 +52,24 @@ function Leads() {
 
     // Moving in the same list
     if (start === finish) {
-      const newTaskIds = [...start.taskIds];
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
+      const newLeadIds = [...start.leadIds];
+      newLeadIds.splice(source.index, 1);
+      newLeadIds.splice(destination.index, 0, draggableId);
 
-      const newColumn = { ...start, taskIds: newTaskIds };
+      const newColumn = { ...start, leadIds: newLeadIds };
       setData({ ...data, columns: { ...data.columns, [newColumn.id]: newColumn } });
 
       return;
     }
 
     // Moving from one list to another
-    const startTaskIds = [...start.taskIds];
-    startTaskIds.splice(source.index, 1);
-    const newStart = { ...start, taskIds: startTaskIds };
+    const startLeadIds = [...start.leadIds];
+    startLeadIds.splice(source.index, 1);
+    const newStart = { ...start, leadIds: startLeadIds };
 
-    const finishTaskIds = [...finish.taskIds];
-    finishTaskIds.splice(destination.index, 0, draggableId);
-    const newFinish = { ...finish, taskIds: finishTaskIds };
+    const finishLeadIds = [...finish.leadIds];
+    finishLeadIds.splice(destination.index, 0, draggableId);
+    const newFinish = { ...finish, leadIds: finishLeadIds };
 
     setData({
       ...data, columns: {
@@ -81,27 +82,26 @@ function Leads() {
 
   return (
     <DragDropContext
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-      >
-        <div style={{
-          display: "flex"
-        }}>
-          {data.columnOrder.map((columnId, index) => {
-            const column = data.columns[columnId];
-            const tasks = column.taskIds.map(taskId => data.tasks[taskId]);
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+    >
+      <h1>Painel de Leads</h1>
+      <div className={styles.container}>
+        {data.columnOrder.map((columnId, index) => {
+          const column = data.columns[columnId];
+          const leads = column.leadIds.map(leadId => data.leads[leadId]);
 
-            const isDropDisabled = index < homeIndex;
+          const isDropDisabled = index < homeIndex;
 
-            return <Column
-              key={column.id}
-              column={column}
-              tasks={tasks}
-              isDropDisabled={isDropDisabled}
-            />;
-          })}
-        </div>
-      </DragDropContext>
+          return <Column
+            key={column.id}
+            column={column}
+            leads={leads}
+            isDropDisabled={isDropDisabled}
+          />;
+        })}
+      </div>
+    </DragDropContext>
   )
 }
 

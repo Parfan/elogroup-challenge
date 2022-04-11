@@ -53,17 +53,35 @@ function LeadModal() {
           <h1>Novo Lead</h1>
           <label className={styles.textField}>
             <span>Nome <span style={{ color: "red" }}>*</span></span>
-            <input required type="text" value={name} onChange={e => setName(e.target.value)} />
+            <input
+              required
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Nome do cliente"
+            />
           </label>
           <label className={styles.textField}>
             <span>Telefone <span style={{ color: "red" }}>*</span></span>
-            <input required type="tel" value={telephone} onChange={e => setTelephone(e.target.value)} />
+            <input
+              required
+              type="tel"
+              value={telephone}
+              onChange={e => setTelephone(e.target.value)}
+              placeholder="Telefone de contato"
+            />
           </label>
           <label className={styles.textField}>
             <span>Email <span style={{ color: "red" }}>*</span></span>
-            <input required type="email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input
+              required
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Email do cliente"
+            />
           </label>
-          <hr style={{width: "clamp(25%, 300px, 75%)"}} />
+          <hr style={{ width: "clamp(25%, 300px, 75%)" }} />
           <span>Oportunidades <span style={{ color: "red" }}>*</span></span>
           <div className={styles.checkboxField}>
             <Checkbox value="All" checked={checkAll} onChange={checkAllCheckboxes}>

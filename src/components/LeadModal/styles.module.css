@@ -51,7 +51,7 @@
   border: 2px solid var(--black);
   font-size: 1.1rem;
   outline: none;
-  padding: 5px;
+  padding: 10px;
 }
 
 .form .textField input:focus {
@@ -71,6 +71,10 @@
 
 .form button:hover {
   opacity: 0.9;
+}
+
+.form input::placeholder {
+  font-size: 0.9rem;
 }
 
 .checkboxField {

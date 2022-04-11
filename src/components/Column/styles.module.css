@@ -1,23 +1,30 @@
-.container {
-  margin: 8px;
-  border: 1px solid lightgrey;
+.column {
+  border: 1px solid var(--black);
   border-radius: 2px;
-  width: 220px;
+  width: 320px;
+  min-height: 500px;
+  margin: 8px;
   display: flex;
   flex-direction: column;
 }
 
 .title {
-  padding: 8px;
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 15px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.taskList {
+.leadList {
   padding: 8px;
   transition: background-color 0.2s ease;
   flex-grow: 1;
   min-height: 100px;
 }
 
-.taskHovering {
+.leadHovering {
   background-color: skyblue;
 }

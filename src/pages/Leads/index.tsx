@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Leads from "../../components/Leads";
-
+import styles from "./styles.module.css";;
 function LeadsPage() {
   const navigate = useNavigate();
 
@@ -15,9 +15,11 @@ function LeadsPage() {
   return (
     <>
       <Header />
-      <Leads />
-      <Link to="create">Novo Lead (+)</Link>
-      <Outlet />
+      <main className={styles.background}>
+        <Leads />
+        <Link to="create" className={styles.newLeadBtn}>Novo Lead (+)</Link>
+        <Outlet />
+      </main>
     </>
   )
 }
