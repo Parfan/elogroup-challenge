@@ -31,9 +31,9 @@ function Lead(props: LeadProps) {
           ref={provided.innerRef}
           className={
             styles.lead +
-              (snapshot.isDragging ? " " + styles.draggingLead : "")
-            // (isDragDisabled ? " " + styles.dragDisabled :
-            //   snapshot.isDragging ? " " + styles.draggingLead : "")
+              // (snapshot.isDragging ? " " + styles.draggingLead : "")
+            (isDragDisabled ? " " + styles.dragDisabled :
+              snapshot.isDragging ? " " + styles.draggingLead : "")
           }
         >
           {props.lead.content.name}
