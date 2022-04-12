@@ -47,7 +47,7 @@
   cursor: pointer;
   min-width: 50%;
   padding: 20px 50px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .form button:hover {
@@ -70,6 +70,16 @@
   width: 80%;
   padding: 10px;
   animation: errorAnimation 0.5s;
+}
+
+@keyframes errorAnimation {
+  0% {
+    background-color: var(--white);
+  }
+
+  100% {
+    background-color: var(--blue);
+  }
 }
 
 @media screen and (max-width: 599px) {
