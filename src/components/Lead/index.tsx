@@ -11,17 +11,18 @@ interface LeadProps {
       oportunities: string[]
     },
   },
-  index: number
+  index: number,
+  column_id: string,
 }
 
 function Lead(props: LeadProps) {
-  // const isDragDisabled = props.lead.id === "lead-1";
+  const isDragDisabled = props.column_id === "column-3";
 
   return (
     <Draggable
       draggableId={props.lead.id}
       index={props.index}
-      // isDragDisabled={isDragDisabled}
+      isDragDisabled={isDragDisabled}
     >
       {(provided, snapshot) => (
         <div

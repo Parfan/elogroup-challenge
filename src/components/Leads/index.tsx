@@ -119,7 +119,7 @@ function Leads() {
           const column = data.columns[columnId];
           const leads = column.leadIds.map(leadId => data.leads[leadId]);
 
-          const isDropDisabled = index < homeIndex;
+          const isDropDisabled = index < homeIndex || index > homeIndex + 1;
 
           return <Column
             key={column.id}

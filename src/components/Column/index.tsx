@@ -36,7 +36,7 @@ function Column(props: ColumnProps) {
             ref={provided.innerRef}
             className={`${styles.leadList}${snapshot.draggingOverWith ? " " + styles.leadHovering : ""}`}
           >
-            {props.leads.map((lead, index) => <Lead key={lead.id} lead={lead} index={index} />)}
+            {props.leads.map((lead, index) => <Lead key={lead.id} lead={lead} index={index} column_id={props.column.id} />)}
             {provided.placeholder}
           </div>
         )}
