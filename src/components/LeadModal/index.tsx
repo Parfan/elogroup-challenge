@@ -1,6 +1,6 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { LeadContext, LeadInterface } from "../../contexts/LeadContext";
+import { useNavigate } from "react-router-dom";
+import { LeadContext } from "../../contexts/LeadContext";
 import { UserContext } from "../../contexts/UserContext";
 import Checkbox from "../Checkbox";
 import styles from "./styles.module.css";
@@ -27,19 +27,7 @@ function LeadModal() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    insertLead();
-  }
 
-  function checkAllCheckboxes() {
-    const isAllChecked = RPA && produtoDigital && analytics && BPM;
-    setCheckAll(!isAllChecked);
-    setRPA(!isAllChecked);
-    setProdutoDigital(!isAllChecked);
-    setAnalytics(!isAllChecked);
-    setBPM(!isAllChecked);
-  }
-
-  function insertLead() {
     let data = JSON.parse(localStorage.getItem("leads") || `
       { 
         "leads": {},
@@ -88,6 +76,15 @@ function LeadModal() {
     navigate(`/leads/${activeId}`);
   }
 
+  function checkAllCheckboxes() {
+    const isAllChecked = RPA && produtoDigital && analytics && BPM;
+    setCheckAll(!isAllChecked);
+    setRPA(!isAllChecked);
+    setProdutoDigital(!isAllChecked);
+    setAnalytics(!isAllChecked);
+    setBPM(!isAllChecked);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
@@ -119,7 +116,7 @@ function LeadModal() {
               <span>Telefone <span style={{ color: "red" }}>*</span></span>
               <input
                 required
-                type="tel"
+                type="number"
                 value={telephone}
                 onChange={e => setTelephone(e.target.value)}
                 placeholder="Telefone de contato"
@@ -131,7 +128,7 @@ function LeadModal() {
                 required
                 type="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value.trim())}
                 placeholder="Email do cliente"
               />
             </label>

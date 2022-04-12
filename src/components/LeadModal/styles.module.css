@@ -104,6 +104,12 @@
   font-size: 0.9rem;
 }
 
+.form input::-webkit-outer-spin-button,
+.form input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .checkboxField {
   display: flex;
   flex-direction: column;
