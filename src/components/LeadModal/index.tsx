@@ -64,7 +64,7 @@ function LeadModal() {
       }
     `);
 
-    const newId = "id_" + Math.random().toString(16).slice(2);
+    const newId = Math.random().toString(16).slice(2);
     const newLead = {
       id: newId,
       user_id: users[activeId[0]],
