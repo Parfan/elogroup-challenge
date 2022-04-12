@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import initialData from "../../utils/initialData";
+import { LeadContext } from "../../contexts/LeadContext";
 import Column from "../Column";
 import styles from "./styles.module.css";
 
@@ -23,7 +23,7 @@ interface ResultInterface extends startInterface {
 }
 
 function Leads() {
-  const [data, setData] = useState(initialData);
+  const { leads: data, setLeads: setData } = useContext(LeadContext);
   const [homeIndex, setHomeIndex] = useState(0);
 
   function onDragStart(start: startInterface) {
@@ -71,13 +71,42 @@ function Leads() {
     finishLeadIds.splice(destination.index, 0, draggableId);
     const newFinish = { ...finish, leadIds: finishLeadIds };
 
-    setData({
+    const newData = {
       ...data, columns: {
         ...data.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish
       }
-    });
+    }
+
+    const leads = JSON.parse(localStorage.getItem("leads") || `
+    { 
+      "leads": {},
+      "columns": {            
+        "column-1": {
+          "id": "column-1",
+          "title": "Cliente em Potencial",
+          "leadIds": []
+        },
+        "column-2": {
+          "id": "column-2",
+          "title": "Dados Confirmados",
+          "leadIds": []
+        },
+        "column-3": {
+          "id": "column-3",
+          "title": "Reunião Agendada",
+          "leadIds": []
+        }
+      },
+      "columnOrder": ["column-1", "column-2", "column-3"]
+    }
+  `);
+    const newColumns = newData.columns;
+    leads.columns = newColumns;
+
+    localStorage.setItem("leads", JSON.stringify(leads));
+    setData(newData);
   }
 
   return (

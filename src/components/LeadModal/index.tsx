@@ -1,5 +1,7 @@
-import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { LeadContext, LeadInterface } from "../../contexts/LeadContext";
+import { UserContext } from "../../contexts/UserContext";
 import Checkbox from "../Checkbox";
 import styles from "./styles.module.css";
 
@@ -12,6 +14,8 @@ function LeadModal() {
   const [produtoDigital, setProdutoDigital] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [BPM, setBPM] = useState(false);
+  const { users, activeId } = useContext(UserContext);
+  const leadContext = useContext(LeadContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +27,7 @@ function LeadModal() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(e)
+    insertLead();
   }
 
   function checkAllCheckboxes() {
@@ -33,6 +37,55 @@ function LeadModal() {
     setProdutoDigital(!isAllChecked);
     setAnalytics(!isAllChecked);
     setBPM(!isAllChecked);
+  }
+
+  function insertLead() {
+    let data = JSON.parse(localStorage.getItem("leads") || `
+      { 
+        "leads": {},
+        "columns": {            
+          "column-1": {
+            "id": "column-1",
+            "title": "Cliente em Potencial",
+            "leadIds": []
+          },
+          "column-2": {
+            "id": "column-2",
+            "title": "Dados Confirmados",
+            "leadIds": []
+          },
+          "column-3": {
+            "id": "column-3",
+            "title": "Reunião Agendada",
+            "leadIds": []
+          }
+        },
+        "columnOrder": ["column-1", "column-2", "column-3"]
+      }
+    `);
+
+    const newId = "id_" + Math.random().toString(16).slice(2);
+    const newLead = {
+      id: newId,
+      user_id: users[activeId[0]],
+      content: {
+        name,
+        telephone,
+        email,
+        oportunities: [RPA, produtoDigital, analytics, BPM],
+      }
+    } || {};
+
+    // Save lead
+    data.leads[newId] = newLead;
+
+    // Set column lead
+    data.columns["column-1"].leadIds.push(newId);
+
+    localStorage.setItem("leads", JSON.stringify(data));
+    leadContext.setLeads(data);
+
+    navigate(`/leads/${activeId}`);
   }
 
   return (

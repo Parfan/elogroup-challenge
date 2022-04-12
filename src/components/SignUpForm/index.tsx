@@ -67,7 +67,7 @@ function SignUpForm() {
     setSignupSuccess(true);
 
     // Adds new user to localStorage
-    const newUserId = Math.random().toString(16).slice(2);
+    const newUserId = "id_" + Math.random().toString(16).slice(2);
     const newUsers = {
       ...userContext.users,
       [newUserId]: {

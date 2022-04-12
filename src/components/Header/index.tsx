@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/elogroup_logo.svg";
+import { UserContext } from "../../contexts/UserContext";
 import styles from "./styles.module.css";
 
 function Header() {
+  const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleClick() {
-    localStorage.setItem("sessionActive", "false");
+    localStorage.setItem("activeId", "[]");
+    userContext.setActiveId([]);
     navigate("/");
   }
 

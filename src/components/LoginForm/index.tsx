@@ -37,7 +37,8 @@ function LoginForm() {
     setShowErrorMessage(false);
 
     // Completes the user log-in
-    localStorage.setItem("sessionActive", "true");
+    localStorage.setItem("activeId", `["${userId}"]`);
+    userContext.setActiveId([userId]);
     setTimeout(() => navigate(`/leads/${userId}`), 1000);
   }
 
