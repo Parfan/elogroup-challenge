@@ -100,7 +100,12 @@ function LeadModal() {
               BPM
             </Checkbox>
           </div>
-          <button type="submit">Salvar</button>
+          <button type="submit" disabled={
+            !(RPA || produtoDigital || analytics || BPM) ||
+            !(name.length > 0 && telephone.length > 0 && email.length > 0)
+          }>
+            Salvar
+          </button>
         </form>
       </div>
     </div>

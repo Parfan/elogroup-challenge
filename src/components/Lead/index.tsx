@@ -15,13 +15,13 @@ interface LeadProps {
 }
 
 function Lead(props: LeadProps) {
-  const isDragDisabled = props.lead.id === "lead-1";
+  // const isDragDisabled = props.lead.id === "lead-1";
 
   return (
     <Draggable
       draggableId={props.lead.id}
       index={props.index}
-      isDragDisabled={isDragDisabled}
+      // isDragDisabled={isDragDisabled}
     >
       {(provided, snapshot) => (
         <div
@@ -30,8 +30,9 @@ function Lead(props: LeadProps) {
           ref={provided.innerRef}
           className={
             styles.lead +
-            (isDragDisabled ? " " + styles.dragDisabled :
-              snapshot.isDragging ? " " + styles.draggingLead : "")
+              (snapshot.isDragging ? " " + styles.draggingLead : "")
+            // (isDragDisabled ? " " + styles.dragDisabled :
+            //   snapshot.isDragging ? " " + styles.draggingLead : "")
           }
         >
           {props.lead.content.name}

@@ -73,6 +73,15 @@
   opacity: 0.9;
 }
 
+.form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.form button:disabled:hover {
+  opacity: 0.5;
+}
+
 .form input::placeholder {
   font-size: 0.9rem;
 }

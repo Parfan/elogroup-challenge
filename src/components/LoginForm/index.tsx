@@ -38,7 +38,7 @@ function LoginForm() {
 
     // Completes the user log-in
     localStorage.setItem("sessionActive", "true");
-    setTimeout(() => navigate("/leads"), 1000);
+    setTimeout(() => navigate(`/leads/${userId}`), 1000);
   }
 
   return (

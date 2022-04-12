@@ -85,7 +85,6 @@ function Leads() {
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
     >
-      <h1>Painel de Leads</h1>
       <div className={styles.container}>
         {data.columnOrder.map((columnId, index) => {
           const column = data.columns[columnId];
