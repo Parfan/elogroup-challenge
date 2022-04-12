@@ -22,3 +22,9 @@
 .newLeadBtn:hover {
   opacity: 0.9;
 }
+
+@media screen and (max-height: 829px) {
+  .background {
+    padding: 50px 0;
+  }
+}

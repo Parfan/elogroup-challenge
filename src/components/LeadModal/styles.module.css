@@ -2,8 +2,9 @@
   background-color: #0009;
   width: 100%;
   min-height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -15,7 +16,7 @@
   width: 40%;
   min-width: 400px;
   max-width: 475px;
-  min-height: 80%;
+  min-height: 80vh;
   padding: 50px 20px;
   display: flex;
   position: relative;
@@ -31,6 +32,17 @@
   right: 10px;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.modal {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .form {
   font-size: 1.1rem;
   display: flex;
@@ -38,6 +50,12 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  gap: 20px;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
@@ -101,10 +119,50 @@
   padding: 10px;
 }
 
-@media screen and (max-width: 599px) {
+.hr {
+  width: clamp(25%, 300px, 75%);
+}
+
+@media screen and (max-height: 749px) and (min-width: 630px) {
+  .hr {
+    display: none;
+  }
+
+  .form {
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .modal {
+    width: 75%;
+    max-width: 100%;
+    gap: 50px;
+  }
+}
+
+@media screen and (max-height: 419px) {
   .modal {
     width: 100%;
+    height: 100%;
+    position: inherit;
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 629px) {
+  .modal {
+    width: 100%;
+    min-width: 0;
     max-width: none;
-    height: 100vh;
+    height: 100%;
+    position: inherit;
+    overflow: scroll;
   }  
+}
+
+@media screen and (max-width: 299px) {
+  .modal {
+    top: 0;
+    right: 0;
+  }
 }
